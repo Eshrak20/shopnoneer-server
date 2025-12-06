@@ -1,0 +1,9 @@
+model Amenity {
+  id               Int              @id @default(autoincrement())
+  name_en          String
+  name_bn          String
+  web_icon         String
+  android_icon     String
+  ios_icon         String
+  projectAmenities ProjectAmenity[]
+}

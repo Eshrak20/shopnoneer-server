@@ -1,0 +1,10 @@
+model District {
+  id         Int       @id @default(autoincrement())
+  name_en    String
+  name_bn    String
+  code       String    @unique
+  divisionId Int
+  division   Division  @relation(fields: [divisionId], references: [id])
+  upazilas   Upazila[]
+  projects   Project[]
+}

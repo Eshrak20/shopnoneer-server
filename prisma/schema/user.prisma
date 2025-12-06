@@ -1,0 +1,16 @@
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String
+  role_id  Int
+  profile  Profile?
+
+  is_active          Boolean   @default(true)
+  deleted_at         DateTime?
+  deleted_by         Int?
+  deactivated_reason String?
+
+  created_at DateTime  @default(now())
+  last_login DateTime?
+  projects   Project[]
+}

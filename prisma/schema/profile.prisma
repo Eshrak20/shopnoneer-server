@@ -1,0 +1,40 @@
+model Profile {
+  id                  Int      @id @default(autoincrement())
+  userId              Int      @unique
+  name                String?
+  avatar              String?
+  bio                 String?
+  verified            Boolean?
+  subscription_period String?
+
+  // Personal details
+  age        Int?
+  occupation String?
+  religion   String?
+
+  // Address information
+  presentAddress    String?
+  permanentAddress  String?
+  preferableAddress String?
+
+  presentDivision    String?
+  permanentDivision  String?
+  preferableDivision String?
+
+  presentDistrict    String?
+  permanentDistrict  String?
+  preferableDistrict String?
+
+  presentUpazila    String?
+  permanentUpazila  String?
+  preferableUpazila String?
+
+  // Additional info
+  monthlyIncome      Float?
+  familyMembers      Int?
+  preferableFlat     String?
+  preferableFlatSize String?
+
+  // Relation
+  user User @relation(fields: [userId], references: [id])
+}

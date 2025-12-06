@@ -1,0 +1,11 @@
+model ProjectAmenity {
+  id        Int @id @default(autoincrement())
+  projectId Int
+  amenityId Int
+
+  project   Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  amenity Amenity @relation(fields: [amenityId], references: [id])
+
+  @@unique([projectId, amenityId])
+  @@map("project_amenities")
+}

@@ -1,0 +1,14 @@
+model Facilities {
+  id        Int    @id @default(autoincrement())
+  name_en   String
+  name_bn   String
+  latitude  String
+  longitude String
+
+  category String
+
+  upazilaId Int
+  upazila   Upazila @relation(fields: [upazilaId], references: [id])
+
+  housings HousingFacility[]
+}

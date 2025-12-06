@@ -1,0 +1,102 @@
+export const upazilas = [
+    {
+        type: "upazila",
+        districtCode: "DHK-01",
+        name_en: "Dhamrai",
+        name_bn: "ধামরাই",
+        code: "DHK-01-01",
+    },
+    {
+        type: "upazila",
+        districtCode: "DHK-01",
+        name_en: "Dohar",
+        name_bn: "দোহার",
+        code: "DHK-01-02",
+    },
+    {
+        type: "upazila",
+        districtCode: "DHK-01",
+        name_en: "Keraniganj",
+        name_bn: "কেরানীগঞ্জ",
+        code: "DHK-01-03",
+    },
+    {
+        type: "upazila",
+        districtCode: "DHK-01",
+        name_en: "Nawabganj",
+        name_bn: "নবাবগঞ্জ",
+        code: "DHK-01-04",
+    },
+    {
+        type: "upazila",
+        districtCode: "DHK-01",
+        name_en: "Savar",
+        name_bn: "সাভার",
+        code: "DHK-01-05",
+    },
+
+    // --- Dhaka City Thanas ---
+    {
+        type: "thana",
+        districtCode: "DHK-01",
+        name_en: "Mohammadpur",
+        name_bn: "মোহাম্মদপুর",
+        code: "DHK-T-01",
+    },
+    {
+        type: "thana",
+        districtCode: "DHK-01",
+        name_en: "Mirpur",
+        name_bn: "মিরপুর",
+        code: "DHK-T-02",
+    },
+    {
+        type: "thana",
+        districtCode: "DHK-01",
+        name_en: "Dhanmondi",
+        name_bn: "ধানমন্ডি",
+        code: "DHK-T-03",
+    },
+    {
+        type: "thana",
+        districtCode: "DHK-01",
+        name_en: "Gulshan",
+        name_bn: "গুলশান",
+        code: "DHK-T-04",
+    },
+    {
+        type: "thana",
+        districtCode: "DHK-01",
+        name_en: "Banani",
+        name_bn: "বনানী",
+        code: "DHK-T-05",
+    },
+    {
+        type: "thana",
+        districtCode: "DHK-01",
+        name_en: "Uttara",
+        name_bn: "উত্তরা",
+        code: "DHK-T-06",
+    },
+    {
+        type: "thana",
+        districtCode: "DHK-01",
+        name_en: "Tejgaon",
+        name_bn: "তেজগাঁও",
+        code: "DHK-T-07",
+    },
+    {
+        type: "thana",
+        districtCode: "DHK-01",
+        name_en: "Khilgaon",
+        name_bn: "খিলগাঁও",
+        code: "DHK-T-08",
+    },
+    {
+        type: "thana",
+        districtCode: "DHK-01",
+        name_en: "Badda",
+        name_bn: "বাড্ডা",
+        code: "DHK-T-09",
+    }
+];

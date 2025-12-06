@@ -1,0 +1,14 @@
+model Upazila {
+  id      Int    @id @default(autoincrement())
+  type    String
+  name_en String
+  name_bn String
+  code    String @unique
+
+  districtId Int
+  district   District @relation(fields: [districtId], references: [id])
+
+  housings   Housing[]
+  facilities Facilities[]
+  projects   Project[]
+}

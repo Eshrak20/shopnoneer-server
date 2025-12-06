@@ -1,0 +1,51 @@
+enum ProjectStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Project {
+  id          Int     @id @default(autoincrement())
+  name_en     String
+  name_bn     String
+  description String?
+
+  no_of_beds    Int?
+  no_of_baths   Int?
+  no_of_balcony Int?
+
+  rate_per_sqft Int?
+  floor_area    Int?
+  floor_no      Int?
+  total_price   Int?
+
+  images String[]
+
+  // Relations
+  divisionId Int
+  division   Division @relation(fields: [divisionId], references: [id])
+  
+  districtId Int
+  district   District @relation(fields: [districtId], references: [id])
+
+  upazilaId Int
+  upazila   Upazila @relation(fields: [upazilaId], references: [id])
+
+  housingId Int
+  housing   Housing @relation(fields: [housingId], references: [id])
+
+  // user created
+  createdById Int
+  createdBy   User @relation(fields: [createdById], references: [id])
+
+  // Many-to-Many: Project → Amenities
+  amenities ProjectAmenity[]
+
+  // soft delete
+  deletedAt DateTime? @default(now())
+
+  status ProjectStatus @default(PENDING)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

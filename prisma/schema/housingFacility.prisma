@@ -1,0 +1,12 @@
+model HousingFacility {
+  id Int @id @default(autoincrement())
+
+  housingId  Int
+  facilityId Int
+
+  housing  Housing    @relation(fields: [housingId], references: [id])
+  facility Facilities @relation(fields: [facilityId], references: [id])
+
+  @@unique([housingId, facilityId]) // A facility can't appear twice for a housing
+  @@map("housing_facilities") // Optional: map to postgres table name
+}

@@ -1,0 +1,8 @@
+model Division {
+  id        Int        @id @default(autoincrement())
+  name_en   String
+  name_bn   String
+  code      String     @unique
+  districts District[]
+  projects  Project[]
+}
