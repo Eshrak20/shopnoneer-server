@@ -19,15 +19,17 @@ const createProject = catchAsync(async (req: Request, res: Response) => {
 
 
 const getAllProjects = catchAsync(async (req: Request, res: Response) => {
-    const projects = await ProjectService.getAllProjects();
+    const result = await ProjectService.getAllProjects(req.query);
 
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
         message: "All projects fetched successfully",
-        data: projects,
+        data: result.data,
+        meta: result.meta,
     });
 });
+
 
 
 const getMyProjects = catchAsync(async (req: Request, res: Response) => {
@@ -95,7 +97,7 @@ const updateProjectStatus = catchAsync(
 );
 
 const deleteMyProject = catchAsync(async (req: Request, res: Response) => {
-    const userId = (req.user as any).userId; 
+    const userId = (req.user as any).userId;
     const projectId = Number(req.params.id);
 
     const result = await ProjectService.deleteMyProject(projectId, userId);

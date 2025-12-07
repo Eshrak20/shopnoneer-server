@@ -39,10 +39,11 @@ export class PrismaQueryBuilder {
     return this;
   }
 
-  /** 🔥 Project-specific filters */
+  //* Project-specific filters
+
   applyProjectFilters() {
     const q = this.query;
-
+    console.log(q)
     // Numeric filters
     if (q.bed) this.filterObj.no_of_beds = Number(q.bed);
     if (q.bath) this.filterObj.no_of_baths = Number(q.bath);
