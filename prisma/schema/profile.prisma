@@ -1,11 +1,12 @@
 model Profile {
-  id                  Int      @id @default(autoincrement())
-  userId              Int      @unique
-  name                String?
-  avatar              String?
-  bio                 String?
-  verified            Boolean?
-  subscription_period String?
+  id                 Int       @id @default(autoincrement())
+  userId             Int       @unique
+  name               String?
+  avatar             String?
+  bio                String?
+  verified           Boolean?
+  subscription_start DateTime?
+  subscription_end   DateTime?
 
   // Personal details
   age        Int?
@@ -33,7 +34,7 @@ model Profile {
   monthlyIncome      Float?
   familyMembers      Int?
   preferableFlat     String?
-  preferableFlatSize String?
+  preferableFlatSize Int?
 
   // Relation
   user User @relation(fields: [userId], references: [id])

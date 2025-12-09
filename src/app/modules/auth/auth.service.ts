@@ -11,15 +11,24 @@ const prisma = new PrismaClient();
 
 const signupService = async (payload: ISignup) => {
   const hashedPassword = await bcrypt.hash(payload.password, 10);
+
   return await prisma.user.create({
     data: {
-      ...payload,
+      email: payload.email,
       password: hashedPassword,
-      profile: { create: { bio: "", avatar: "" } } // create empty profile
+      role_id: payload.role_id,
+      profile: {
+        create: {
+          name: payload.name,
+          bio: "",
+          avatar: ""
+        }
+      }
     },
     include: { profile: true }
   });
 };
+
 
 
 const loginService = async (payload: ILogin) => {
@@ -72,7 +81,7 @@ const resetPassword = async (
       id: userId, // make sure userId exists in decodedToken
     },
   });
-  
+
   if (!user) {
     throw new AppError(httpStatus.NOT_FOUND, "User not found");
   }

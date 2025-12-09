@@ -14,8 +14,8 @@ router.post(
   HousingControllers.createHousing
 );
 
-router.get("/get-housing", isAuthenticated, HousingControllers.getAllHousings);
-router.get("/get-housing/:id", isAuthenticated, HousingControllers.getHousingById);
+router.get("/get-housing",  HousingControllers.getAllHousings);
+router.get("/get-housing/:id", HousingControllers.getHousingById);
 
 router.patch(
   "/update-housing/:id",

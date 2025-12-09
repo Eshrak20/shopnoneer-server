@@ -17,7 +17,7 @@ const createHousing = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllHousings = catchAsync(async (req: Request, res: Response) => {
-  const housings = await HousingService.getAllHousings();
+  const housings = await HousingService.getAllHousings(req.query);
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,

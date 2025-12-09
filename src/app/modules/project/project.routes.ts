@@ -16,13 +16,12 @@ router.post(
 );
 
 
-router.get("/get-projects", isAuthenticated, ProjectControllers.getAllProjects);
+router.get("/get-projects",  ProjectControllers.getAllProjects);
 router.get("/my-projects", isAuthenticated, ProjectControllers.getMyProjects);
 
 
 router.get(
     "/get-project/:id",
-    isAuthenticated,
     ProjectControllers.getProjectById
 );
 

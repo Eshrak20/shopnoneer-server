@@ -14,7 +14,7 @@ npx prisma studio --port 5000 --browser none --hostname 192.168.10.33
 database changes + generates client  -> npx prisma migrate dev
 only generates the client            -> npx prisma generate 
 For pure migration                   -> npx prisma migrate dev --name init
-
+npx prisma migrate dev --name profile-model-change
 
 # Clear Terminal 
 \! cls

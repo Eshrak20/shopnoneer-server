@@ -13,8 +13,8 @@ router.post(
   FacilitiesControllers.createFacility
 );
 
-router.get("/get-facilities/", isAuthenticated, FacilitiesControllers.getAllFacilities);
-router.get("/get-facilities/:id", isAuthenticated, FacilitiesControllers.getFacilityById);
+router.get("/get-facilities/", FacilitiesControllers.getAllFacilities);
+router.get("/get-facilities/:id", FacilitiesControllers.getFacilityById);
 
 router.patch(
   "/update-facilities/:id",

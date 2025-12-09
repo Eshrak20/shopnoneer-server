@@ -29,7 +29,7 @@ export const updateProfileSchema = z.object({
   monthlyIncome: z.number().optional(),
   familyMembers: z.number().optional(),
   preferableFlat: z.string().optional(),
-  preferableFlatSize: z.string().optional(),
+  preferableFlatSize: z.number().optional(),
 });
 
 export const updateAvatarSchema = z.object(

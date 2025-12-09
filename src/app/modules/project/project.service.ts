@@ -159,27 +159,27 @@ const updateProjectStatus = async (id: number, status: string) => {
 
 
 const getAllProjects = async (query: any) => {
-  const qb = new PrismaQueryBuilder(prisma.project, query);
+    const qb = new PrismaQueryBuilder(prisma.project, query);
 
-  const data = await qb
-    .filter()
-    .applyProjectFilters()
-    .search(["name_en", "name_bn", "description"])
-    .sort()
-    .paginate()
-    .include({
-      district: true,
-      upazila: true,
-      housing: true,
-      createdBy: true,
-      division: true,
-      amenities: { include: { amenity: true } },
-    })
-    .build();
+    const data = await qb
+        .filter()
+        .applyProjectFilters()
+        .search(["name_en", "name_bn", "description"])
+        .sort()
+        .paginate()
+        .include({
+            district: true,
+            upazila: true,
+            housing: true,
+            createdBy: true,
+            division: true,
+            amenities: { include: { amenity: true } },
+        })
+        .build();
 
-  const meta = await qb.getMeta();
+    const meta = await qb.getMeta();
 
-  return { data, meta };
+    return { data, meta };
 };
 
 const getMyProjects = async (userId: number) => {
@@ -208,7 +208,16 @@ const getProjectById = async (id: number) => {
         include: {
             district: true,
             upazila: true,
-            housing: true,
+            housing: {
+                include: {
+                    facilities: {   // include facilities of housing
+                        include: {
+                            facility: true,  // include detailed facility info
+                        },
+                    },
+                    upazila: true, // keep upazila relation if needed
+                },
+            },
             createdBy: true,
             amenities: { include: { amenity: true } },
         },
@@ -218,6 +227,7 @@ const getProjectById = async (id: number) => {
 
     return project;
 };
+
 
 
 const deleteMyProject = async (projectId: number, userId: number) => {

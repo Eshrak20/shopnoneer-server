@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import AppError from "../../errorHelpers/AppError";
 import httpStatus from "http-status-codes";
+import { PrismaQueryBuilder } from "../../utils/QueryBuilder";
 
 const prisma = new PrismaClient();
 
@@ -18,10 +19,10 @@ const createHousing = async (data: any) => {
       ...housingData,
       facilities: facilities?.length
         ? {
-            create: facilities.map((fid: number) => ({
-              facility: { connect: { id: fid } },
-            })),
-          }
+          create: facilities.map((fid: number) => ({
+            facility: { connect: { id: fid } },
+          })),
+        }
         : undefined, // if none, do nothing
     },
     include: { facilities: { include: { facility: true } } },
@@ -31,11 +32,52 @@ const createHousing = async (data: any) => {
 
 
 
-const getAllHousings = async () => {
-  return prisma.housing.findMany({
-    include: { facilities: { include: { facility: true } }, upazila: true },
-  });
+// const getAllHousings = async () => {
+//   return prisma.housing.findMany({
+//     include: {
+//       projects: {
+//         select: {
+//           id: true,
+//           name_bn: true,
+//         },
+//       },
+//       _count: {
+//         select: { projects: true }, // total project count
+//       },
+//     },
+//   });
+// };
+
+
+const getAllHousings = async (query: any) => {
+  const qb = new PrismaQueryBuilder(prisma.housing, query);
+
+  const data = await qb
+    .filter() // any generic filters on housings
+    .search(["name", "location"]) // example search fields for housing
+    .paginate() // pagination
+    .include({
+      projects: {
+        select: {
+          id: true,
+          name_bn: true,
+        },
+      },
+      _count: {
+        select: { projects: true }, // total project count
+      },
+    })
+    .build();
+
+  const meta = await qb.getMeta();
+
+  return { data, meta };
 };
+
+
+
+
+
 
 const getHousingById = async (id: number) => {
   const housing = await prisma.housing.findUnique({
