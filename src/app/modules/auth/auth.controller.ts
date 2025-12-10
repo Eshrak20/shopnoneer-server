@@ -5,20 +5,20 @@ import { sendResponse } from "../../utils/sendResponse";
 import { AuthService } from "./auth.service";
 import { setAuthCookie } from "../../utils/setCookie";
 import { envVars } from "../../config/env";
-import { JwtPayload } from "jsonwebtoken";
 
 const signupController = catchAsync(
     async (req: Request, res: Response) => {
         const result = await AuthService.signupService(req.body);
-        console.log(result)
         // Remove password from response
-        const { password, ...userWithoutPassword } = result;
-
+        setAuthCookie(res, {
+            accessToken: result.accessToken,
+            refreshToken: result.refreshToken,
+        });
         sendResponse(res, {
             success: true,
             statusCode: httpStatus.CREATED,
             message: "User created successfully",
-            data: userWithoutPassword,
+            data: result,
         });
     }
 );

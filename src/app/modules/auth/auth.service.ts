@@ -10,9 +10,11 @@ import { JwtPayload } from "jsonwebtoken";
 const prisma = new PrismaClient();
 
 const signupService = async (payload: ISignup) => {
+  // Hash password
   const hashedPassword = await bcrypt.hash(payload.password, 10);
 
-  return await prisma.user.create({
+  // Create user with profile
+  const newUser = await prisma.user.create({
     data: {
       email: payload.email,
       password: hashedPassword,
@@ -27,7 +29,20 @@ const signupService = async (payload: ISignup) => {
     },
     include: { profile: true }
   });
+
+  // Generate tokens (same as login)
+  const userTokens = createUserTokens(newUser);
+
+  // Remove password
+  const { password, ...userWithoutPassword } = newUser;
+
+  return {
+    user: userWithoutPassword,
+    accessToken: userTokens.accessToken,
+    refreshToken: userTokens.refreshToken,
+  };
 };
+
 
 
 
